@@ -1,8 +1,84 @@
-import numpy as np
+# Notes as I worked through the data1_project using the Metro Gov Salary Data
+# <Week>.<ModuleNumber>
+
+
+# Borrowed Function to print the empty line, then a message in a banner
+
 import pandas as pd
+
+
+def banner(message, banner="-"):
+
+    line = banner * 11
+    print(f"\n{line}")
+    print(message)
+    print(line)
+
+##
+# Week 3 Data Structures
+##
+
+
+#####
+banner("Content for 3.1")
+#####
+
+headers = ["CalYear", "Employee_Name", "Department", "jobTitle", "Annual_Rate",
+           "Regular_Rate", "Overtime_Rate", "Incentive_Allowance", "Other", "YTD_Total"]
+print(headers)
+
+#####
+banner("Content for 3.2")
+#####
+
+print(headers[1:3])
+
+#####
+banner("Content for 3.3")
+#####
+
+text = ['Employee', 'Pay', 'Position', 'Other', 'Department', 'Year']
+num = [1, 22, 14, 13, 12, 11, 10, 9]
+
+print('Slicing a list from the 0 index to 3rd index', text[0:3])
+print('Now it is time to slice the numbers', num[0:3])
+
+#####
+banner("Content for 3.4")
+#####
+
+data = {
+    "Employee": "Michelle Rodriguez",
+    "Position": "Systems Analyst",
+    "Employer": "Appriss Insights",
+
+}
+
+print(data["Employee"])
+
+#####
+banner("Content for 3.5")
+#####
+
+print(type(data))
+print(type(data['Position']))
+print(type(1))
+
+
+#####
+banner("Content for 4")
+#####
+
+# Import pandas module and set it as pd when reading my csv for salary_df
 
 salary_df = pd.read_csv(
     "C:\\Users\\miche\\OneDrive\\Desktop\\Code Louisville\\Code_along_project\\code_along_proj\\SalaryData.csv", encoding='unicode_escape')
+
+
+#####
+banner("Content for 5.1")
+#####
+
 print(salary_df.head())
 
 print(salary_df.shape)
@@ -12,13 +88,27 @@ n, num_columns = salary_df.shape
 print('This is the number of rows: ', n)
 print('This is the number of columns: ', num_columns)
 
+#####
+banner("Content for 5.2")
+#####
+
 dept = list(salary_df['Department'].unique())
 print('These are the departments listed for the metro salary analysis: ', *dept, sep='\n')
-print('The a department in this list is: ', dept.pop())
 
-print('The 4th department is: ', dept.pop(4))
+# POP removes and returns the last value from the List or the given index value
+print(dept.pop())
 
-print('The first 4 departments are: ', dept[0: 4])
+print(dept.pop(4))
+
+print(dept[0: 4])
+
+dept.append('PTO')
+dept[-1]
+
+#####
+banner("Content for 6")
+#####
+
 
 print('The hightest salary paid to a metro employee is ',
       salary_df['Annual_Rate'].max())
