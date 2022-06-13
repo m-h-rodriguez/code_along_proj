@@ -4,7 +4,9 @@
 
 # Borrowed Function to print the empty line, then a message in a banner
 
+import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
 
 def banner(message, banner="-"):
@@ -110,5 +112,39 @@ banner("Content for 6")
 #####
 
 
+# def dept_pay_budget(department, budget):
+#     dept_budget = "${:,.2f}". format(budget)
+#     dept_name = department
+#     return(dept_budget, dept_name)
+
+
+# print(dept_pay_budget)
+
+
 print('The hightest salary paid to a metro employee is ',
       salary_df['Annual_Rate'].max())
+
+
+#####
+banner("Content for 7")
+#####
+
+print(salary_df.sort_values(by='CalYear' and 'Department', ascending=True))
+
+print(salary_df.groupby(['CalYear', 'Department'])['Annual_Rate'].sum())
+
+print(salary_df.groupby(['Employee_Name', 'Department', 'Annual_Rate']))
+
+#####
+banner("Matplotlib Visualization Demo")
+#####
+
+print(salary_df.dtypes)
+
+
+# plt.figure(figsize=(12, 6))
+# plt.scatter(salary_df.groupby('Department'), salary_df.groupby('CalYear'))
+# plt.xlabel('Department')
+# plt.ylabel('CalYear')
+# plt.title('Scatterplot of range of salaries per Department')
+# plt.show()
