@@ -4,6 +4,7 @@
 
 # Borrowed Function to print the empty line, then a message in a banner
 
+import datetime
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -107,15 +108,34 @@ print(dept[0: 4])
 dept.append('PTO')
 dept[-1]
 
+
+# converting the 'CalYear' column from string to datetime
+
+salary_df["CalYear"] = salary_df["CalYear"].astype('datetime64[ns]')
+
+
+def selected_year_salary(year):
+    return salary_df["CalYear"].datetime
+
+
 #####
 banner("Content for 6")
 #####
 
 
-# def dept_pay_budget(department, budget):
-#     dept_budget = "${:,.2f}". format(budget)
-#     dept_name = department
-#     return(dept_budget, dept_name)
+def year(salary): return salary_df['CalYear']
+
+
+year(2020)
+
+print(year(2020))
+
+
+def salary_by_year(year, departments):
+    return salary_df['CalYear'], salary_df["Department"]
+
+
+print(salary_by_year(2020, 'Parks & Recreation'))
 
 
 # print(dept_pay_budget)
