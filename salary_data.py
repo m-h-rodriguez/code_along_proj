@@ -155,12 +155,15 @@ print(salary_df.groupby(['CalYear', 'Department'])['Annual_Rate'].sum())
 
 print(salary_df.groupby(['Employee_Name', 'Department', 'Annual_Rate']))
 
-#####
+####
 banner("Matplotlib Visualization Demo")
-#####
+####
 
 print(salary_df.dtypes)
 
+# filterRate = data["Annual_Rate"].isin([])
+filterYear = salary_df["CalYear"].isin(["2022"])
+salary_df[filterYear]
 
 # plt.figure(figsize=(12, 6))
 # plt.scatter(salary_df.groupby('Department'), salary_df.groupby('CalYear'))
