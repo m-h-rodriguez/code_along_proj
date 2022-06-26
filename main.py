@@ -69,20 +69,23 @@ dataByYearTop = dataByYear[:1]
 
 print('The lowest paid employee of 2022 is: \n', dataByYearTop)
 
+#####
+banner("Department Information")
+#####
+
+# display all available Departments in the data set and print them on new lines
+dept = list(salary_data_df['Department'].unique())
+print('These are the departments listed for the metro salary analysis: ', *dept, sep='\n')
+
 
 # salary_2022 = []
 
 # for index, rows in salary_data_df.iterrows():
 #     salary_list = [rows.CalYear, rows.Employee_Name,
-#                    rows.jobTitle, int(rows.Annual_Rate)]
+#                    rows.Department, int(rows.Annual_Rate)]
 
 #     if rows.CalYear == 2022:
 #         salary_2022.append(salary_list)
 
 
 # print(salary_2022)
-
-
-# max_pay_employee = max(salary_2022, key=lambda x: float(x))
-
-# print(str(max_pay_employee))
