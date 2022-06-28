@@ -70,16 +70,6 @@ dataByYearBottom = dataByYearDesc[:1]
 print('The lowest paid employee of 2022 is: \n', dataByYearBottom)
 
 
-# incentiveTop = salary_data_df[filterYear]
-# incentiveTop.sort_values(["Incentive_Allowance"],
-#                          axis=0,
-#                          ascending=[False],
-#                          inplace=True)
-
-# incentiveTop = incentiveTop[1:11]
-
-# print(incentiveTop)
-
 #####
 banner("Department Information")
 #####
