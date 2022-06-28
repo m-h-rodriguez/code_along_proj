@@ -46,28 +46,39 @@ banner("Employee Information")
 salary_data_df['Annual_Rate'] = salary_data_df['Annual_Rate'].astype(np.int64)
 filterYear = salary_data_df["CalYear"].isin([2022])
 filterRateMax = salary_data_df["Annual_Rate"].max()
-dataByYear = salary_data_df[filterYear]
+dataByYearAsc = salary_data_df[filterYear]
 
-dataByYear.sort_values(["Annual_Rate"],
-                       axis=0,
-                       ascending=[False],
-                       inplace=True)
+dataByYearAsc.sort_values(["Annual_Rate"],
+                          axis=0,
+                          ascending=[False],
+                          inplace=True)
 
-dataByYearTop = dataByYear[:1]
+dataByYearTop = dataByYearAsc[:1]
 
 print('The highest paid employee of 2022 is: \n', dataByYearTop)
 
 filterRateMin = salary_data_df["Annual_Rate"].min()
-dataByYear = salary_data_df[filterYear]
+dataByYearDesc = salary_data_df[filterYear]
 
-dataByYear.sort_values(["Annual_Rate"],
-                       axis=0,
-                       ascending=[True],
-                       inplace=True)
+dataByYearDesc.sort_values(["Annual_Rate"],
+                           axis=0,
+                           ascending=[True],
+                           inplace=True)
 
-dataByYearTop = dataByYear[:1]
+dataByYearBottom = dataByYearDesc[:1]
 
-print('The lowest paid employee of 2022 is: \n', dataByYearTop)
+print('The lowest paid employee of 2022 is: \n', dataByYearBottom)
+
+
+# incentiveTop = salary_data_df[filterYear]
+# incentiveTop.sort_values(["Incentive_Allowance"],
+#                          axis=0,
+#                          ascending=[False],
+#                          inplace=True)
+
+# incentiveTop = incentiveTop[1:11]
+
+# print(incentiveTop)
 
 #####
 banner("Department Information")
