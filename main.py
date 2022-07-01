@@ -1,3 +1,5 @@
+
+import babel.numbers
 import pandas as pd
 import os
 import numpy as np
