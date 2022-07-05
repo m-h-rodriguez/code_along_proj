@@ -18,28 +18,73 @@ salary_data_df = pd.read_excel(os.path.join(
 salary_data_df['Employee_Name'].replace('', np.nan, inplace=True)
 salary_data_df.dropna(subset=['Employee_Name'], inplace=True)
 
-salary_data_df.drop(
-    salary_data_df[salary_data_df['CalYear'] != 2022].index, inplace=True)
+
+# salary_data_df.drop(
+#     salary_data_df[salary_data_df['CalYear'] != 2022].index, inplace=True)
 
 # print(salary_data_df.tail())
 
 
-def avg_salary(df):
-    avg_salary = salary_data_df.groupby('Department', as_index=False)[
-        'Annual_Rate'].mean()
-    dept_count = salary_data_df[['Department']
-                                ].value_counts().reset_index(name='counts')
-    #dept = salary_data_df['Department'].unique()
-    return avg_salary, dept_count
+# def agg_salary():
+#     salay_calc = salary_data_df.groupby(
+#         salary_data_df['Department']).Annual_Rate.agg(['count', 'min', 'max', 'mean', 'sum']).rename(columns={'count': 'Employee_Count', 'min': 'Lowest_Salary', 'max': 'Highest_Salary', 'mean': 'Average_Salary', 'sum': 'Department_Total'})
+
+#     return print(salay_calc)
 
 
-print(avg_salary(salary_data_df))
+# agg_salary()
 
 
-# plt.plot(dept, salary, 'o')
+def agg_2022_salary(year):
+    filterYear = salary_data_df["CalYear"].isin([year])
+    dataByYear = salary_data_df[filterYear]
+    salay_calc = dataByYear.groupby(
+        dataByYear['Department']).Annual_Rate.agg(['count', 'min', 'max', 'mean', 'sum']).rename(columns={'count': 'Employee_Count', 'min': 'Lowest_Salary', 'max': 'Highest_Salary', 'mean': 'Average_Salary', 'sum': 'Department_Total'})
+
+    return print(salay_calc)
+
+
+agg_2022_salary(2021)
+
+
+def max_2021_salary(year):
+    salary_data_df['Annual_Rate'] = salary_data_df['Annual_Rate'].astype(
+        np.int64)
+    filterYear = salary_data_df["CalYear"].isin([year])
+    filterRateMax = salary_data_df["Annual_Rate"].max()
+    dataByYearAsc = salary_data_df[filterYear]
+
+    dataByYearAsc.sort_values(["Annual_Rate"],
+                              axis=0,
+                              ascending=[False],
+                              inplace=True)
+
+    dataByYearTop = dataByYearAsc[:1]
+    return dataByYearTop
+
+
+print('The highest paid employee of 2022 is: \n',
+      max_2021_salary(2018))
+
+
+# def plot_salary(salary_data_df):
+#     test = salary_data_df.groupby(['Department'])
+#     test_sal = test['Annual_Rate'].agg(['mean'])
+#     return sns.histplot(data=salary_data_df, x=test)
+
+
+# plot_salary(salary_data_df)
+
+
+# test = salary_data_df.groupby(['Department'])
+# test.aggregate({'Annual_Rate': ['mean'],
+#                 'Incentive_Allowance': ['max', 'min'],
+#                 'Annual_Rate': ['sum']}).reset_index()
+# print(test)
+# plt.plot(test, test_sal, 'o')
 # plt.figure(figsize=(20, 5))
-# plt.scatter(dept, salary)
-# plt.xticks(dept[::1], rotation="vertical")
+# plt.hist(test, test_sal)
+# plt.xticks(test[::1], rotation="vertical")
 # plt.xlabel('Department')
 # plt.ylabel('Salary Budget')
 # plt.show()
