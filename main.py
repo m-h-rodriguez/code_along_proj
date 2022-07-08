@@ -30,6 +30,10 @@ salary_data_df = pd.read_excel(os.path.join(
 salary_data_df['Employee_Name'].replace('', np.nan, inplace=True)
 salary_data_df.dropna(subset=['Employee_Name'], inplace=True)
 
+# Converting the Annual Rate in the data set to int64 to be used in later functions
+
+salary_data_df['Annual_Rate'] = salary_data_df['Annual_Rate'].astype(
+    np.int64)
 
 # Data Analysis
 
@@ -63,8 +67,6 @@ agg_salary(2018)
 
 
 def max_salary(year):
-    salary_data_df['Annual_Rate'] = salary_data_df['Annual_Rate'].astype(
-        np.int64)
     filterYear = salary_data_df["CalYear"].isin([year])
     filterRateMax = salary_data_df["Annual_Rate"].max()
     dataByYearAsc = salary_data_df[filterYear]
@@ -83,8 +85,6 @@ print('The highest paid employee of the selected year is: \n',
 
 
 def min_salary(year):
-    salary_data_df['Annual_Rate'] = salary_data_df['Annual_Rate'].astype(
-        np.int64)
     filterYear = salary_data_df["CalYear"].isin([year])
     filterRateMax = salary_data_df["Annual_Rate"].min()
     dataByYearDesc = salary_data_df[filterYear]
@@ -100,6 +100,15 @@ def min_salary(year):
 
 print('The lowest paid employee of the selected year is: \n',
       min_salary(2019))
+
+
+salary_top_allow = salary_data_df.nlargest(5, 'Incentive_Allowance')
+print("Five positions and employees who were given the highest incentive allowance over the last 6 years: ",
+      salary_top_allow, sep='\n')
+
+salary_bottom_allow = salary_data_df.nsmallest(5, 'Incentive_Allowance')
+print("Five positions and employees who were given the lowest incentive allowance over the last 6 years: ",
+      salary_bottom_allow, sep='\n')
 
 
 # salary_2022 = []

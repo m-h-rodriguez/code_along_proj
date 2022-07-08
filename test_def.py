@@ -67,24 +67,14 @@ print('The highest paid employee of 2022 is: \n',
       max_2021_salary(2018))
 
 
-# def plot_salary(salary_data_df):
-#     test = salary_data_df.groupby(['Department'])
-#     test_sal = test['Annual_Rate'].agg(['mean'])
-#     return sns.histplot(data=salary_data_df, x=test)
+# def employee_diff(year1, year2):
+#     filterYear1 = salary_data_df["CalYear"].isin([year1])
+#     dataByYear1 = salary_data_df[filterYear1].groupby(
+#         salary_data_df['Department']).count()
+#     filterYear2 = salary_data_df["CalYear"].isin([year2])
+#     dataByYear2 = salary_data_df[filterYear2].groupby(
+#         salary_data_df['Department']).count()
+#     return print(dataByYear1, dataByYear2)
 
 
-# plot_salary(salary_data_df)
-
-
-# test = salary_data_df.groupby(['Department'])
-# test.aggregate({'Annual_Rate': ['mean'],
-#                 'Incentive_Allowance': ['max', 'min'],
-#                 'Annual_Rate': ['sum']}).reset_index()
-# print(test)
-# plt.plot(test, test_sal, 'o')
-# plt.figure(figsize=(20, 5))
-# plt.hist(test, test_sal)
-# plt.xticks(test[::1], rotation="vertical")
-# plt.xlabel('Department')
-# plt.ylabel('Salary Budget')
-# plt.show()
+# employee_diff(2021, 2019)
