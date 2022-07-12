@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import numpy as np
+import matplotlib.pyplot as plt
 
 # filtered values used to extract the max and min salary are setting a value on a copy of a slice from the dataframe.
 # To ignore this warning as a means of only pulling the values, the chained mode assignment sets this to none for it to ignore the warning
@@ -109,6 +110,16 @@ print("Five positions and employees who were given the highest incentive allowan
 salary_bottom_allow = salary_data_df.nsmallest(5, 'Incentive_Allowance')
 print("Five positions and employees who were given the lowest incentive allowance over the last 6 years: ",
       salary_bottom_allow, sep='\n')
+
+
+def tech_emp(year):
+    filterYear = salary_data_df["CalYear"].isin([year])
+    test = salary_data_df[filterYear].loc[salary_data_df['Department']
+                                          == 'Technology Services']
+    return test
+
+
+print(tech_emp(2022).nlargest(5, "Annual_Rate"))
 
 
 # salary_2022 = []
